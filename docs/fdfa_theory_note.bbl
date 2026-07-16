@@ -1,0 +1,78 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Jaffard(2004)]{jaffard2004}
+Stephane Jaffard.
+\newblock Wavelet techniques in multifractal analysis.
+\newblock In \emph{Fractal Geometry and Applications: A Jubilee of Beno\^it
+  Mandelbrot}, volume~72 of \emph{Proceedings of Symposia in Pure Mathematics},
+  pages 91--152. American Mathematical Society, 2004.
+\newblock URL
+  \url{https://indico.ictp.it/event/a13201/session/10/contribution/60/material/0/0.pdf}.
+
+\bibitem[Kantelhardt et~al.(2002)Kantelhardt, Zschiegner, Koscielny-Bunde,
+  Havlin, Bunde, and Stanley]{kantelhardt2002}
+Jan~W. Kantelhardt, Stephan~A. Zschiegner, Eva Koscielny-Bunde, Shlomo Havlin,
+  Armin Bunde, and H.~Eugene Stanley.
+\newblock Multifractal detrended fluctuation analysis of nonstationary time
+  series.
+\newblock \emph{Physica A: Statistical Mechanics and its Applications},
+  316\penalty0 (1--4):\penalty0 87--114, 2002.
+\newblock \doi{10.1016/S0378-4371(02)01383-3}.
+
+\bibitem[Kwapie{\'n} et~al.(2023)Kwapie{\'n}, Blasiak, Dro{\.z}d{\.z}, and
+  O{\'s}wi{e}cimka]{kwapien2023}
+Jaros{\l}aw Kwapie{\'n}, Pawel Blasiak, Stanis{\l}aw Dro{\.z}d{\.z}, and
+  Pawe{\l} O{\'s}wi{e}cimka.
+\newblock Genuine multifractality in time series is due to temporal
+  correlations.
+\newblock \emph{Physical Review E}, 107\penalty0 (3):\penalty0 034139, 2023.
+\newblock \doi{10.1103/PhysRevE.107.034139}.
+
+\bibitem[Leonarduzzi et~al.(2016)Leonarduzzi, Wendt, Abry, Jaffard, Melot,
+  Roux, and Torres]{leonarduzzi2016}
+Roberto Leonarduzzi, Herwig Wendt, Patrice Abry, St{\'e}phane Jaffard,
+  Clothilde Melot, St{\'e}phane~G. Roux, and Mar{\'\i}a~E. Torres.
+\newblock p-exponent and p-leaders, part ii: Multifractal analysis. relations
+  to detrended fluctuation analysis.
+\newblock \emph{Physica A: Statistical Mechanics and its Applications},
+  448:\penalty0 319--339, 2016.
+\newblock \doi{10.1016/j.physa.2015.12.035}.
+
+\bibitem[Macek and Wawrzaszek(2011)]{macek2011}
+Wies{\L}aw~M. Macek and Anna Wawrzaszek.
+\newblock Multifractal structure of small and large scales fluctuations of
+  interplanetary magnetic fields.
+\newblock \emph{Planetary and Space Science}, 59\penalty0 (7):\penalty0
+  569--574, 2011.
+\newblock \doi{10.1016/j.pss.2010.02.006}.
+
+\bibitem[Nakao(2000)]{nakao2000}
+Hiroya Nakao.
+\newblock Multi-scaling properties of truncated l{\'e}vy flights.
+\newblock \emph{Physics Letters A}, 266\penalty0 (4-6):\penalty0 282--289,
+  2000.
+\newblock \doi{10.1016/S0375-9601(00)00059-1}.
+
+\bibitem[Peng et~al.(1994)Peng, Buldyrev, Havlin, Simons, Stanley, and
+  Goldberger]{peng1994}
+C.-K. Peng, Sergey~V. Buldyrev, Shlomo Havlin, Michael Simons, H.~Eugene
+  Stanley, and Ary~L. Goldberger.
+\newblock Mosaic organization of dna nucleotides.
+\newblock \emph{Physical Review E}, 49\penalty0 (2):\penalty0 1685, 1994.
+\newblock \doi{10.1103/PhysRevE.49.1685}.
+
+\bibitem[Sadegh~Movahed et~al.(2006)Sadegh~Movahed, Jafari, Ghasemi, Rahvar,
+  and Reza Rahimi~Tabar]{movahed2006}
+M.~Sadegh~Movahed, G.~R. Jafari, F.~Ghasemi, Sohrab Rahvar, and M.~Reza
+  Rahimi~Tabar.
+\newblock Multifractal detrended fluctuation analysis of sunspot time series.
+\newblock \emph{Journal of Statistical Mechanics: Theory and Experiment},
+  2006\penalty0 (02):\penalty0 P02003--P02003, 2006.
+\newblock \doi{10.1088/1742-5468/2006/02/P02003}.
+
+\end{thebibliography}

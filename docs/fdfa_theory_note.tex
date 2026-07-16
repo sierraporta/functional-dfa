@@ -1,0 +1,293 @@
+\documentclass[10pt, letterpaper]{paper}
+\usepackage[round]{natbib}
+\setcitestyle{authoryear}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{doi}
+\usepackage{orcidlink}
+\usepackage{authblk}
+\renewcommand{\Affilfont}{\footnotesize}
+\renewcommand{\Authfont}{\normalsize}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{principle}[theorem]{Principle}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\eqd}{\overset{d}{=}}
+\newcommand{\Phifun}{\Phi}
+\newcommand{\Amed}{\mathcal{A}_{\mathrm{med}}}
+
+\title{\textbf{Functional detrended fluctuation analysis (FDFA):\\
+working notes --- the idea, the axioms, and the
+prediction--falsification record}}
+
+\author{D. Sierra-Porta\orcidlink{0000-0003-3461-1347}}
+\affil{Universidad Tecnológica de Bolívar. Grupo de Investigación Gravitación y Matemática Aplicada - GIGMA \& Grupo de Investigación Física Aplicada y Procesamiento de Imágenes y Señales - FAPIS., Parque Industrial y Tecnológico Carlos Vélez Pombo Km 1 Vía Turbaco, Cartagena de Indias, 130010, Bolívar, Colombia}
+\affil{Corresponding author: dporta@utb.edu.co}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent These are the working notes behind the FDFA project. They
+record, in the order in which it happened, the question that started
+the project, the minimal theory built to make the question precise,
+the falsifiable predictions derived from that theory, and the outcome
+of each prediction --- including one falsification that became the
+most useful structural insight of the program. The notes accompany
+the code repository that implements everything described here; the
+consolidated manuscript is a separate document. Nothing in these
+notes is required to use the code, but they explain \emph{why} the
+code is organized the way it is.
+\end{abstract}
+
+\section{The question}
+
+Classical DFA/MFDFA \citep{peng1994,kantelhardt2002} computes, in
+each window $v$ of scale $s$, the \emph{variance} of the detrending
+residuals,
+\begin{equation}
+F^2(v,s)=\frac1s\sum_{i=1}^{s}
+\bigl(Y((v-1)s+i)-P_m^{(v)}(i)\bigr)^2 ,
+\label{eq:classicF}
+\end{equation}
+and aggregates the windows with $q$-th power means,
+$F_q(s)=(\tfrac1{2N_s}\sum_v[F^2(v,s)]^{q/2})^{1/q}\sim s^{h(q)}$.
+Essentially every ingredient of this pipeline has been varied in the
+literature --- the detrending, the windowing, the correlation
+structure probed --- except the fluctuation measure itself, which has
+remained the variance in every variant. The project starts from one
+question: \emph{is the variance necessary, and what exactly would
+change if it were replaced?}
+
+The answer developed below: for the scaling exponent the variance is
+irrelevant (any admissible dispersion functional gives the same
+exponent); what the choice controls is the statistical behavior of
+the estimator; and the decisive design choice turns out to sit one
+level up --- in how windows are aggregated --- which in turn yields a
+surrogate-free diagnostic of the origin (correlational versus
+distributional) of multifractality.
+
+\section{The construction}
+
+\begin{definition}[Dispersion functional]\label{def:phi}
+$\Phifun:\bigcup_{s\ge1}\R^s\to[0,\infty)$, measurable on each
+$\R^s$, satisfying
+(A1) \emph{positive homogeneity}, $\Phifun(\lambda r)=\lambda\Phifun(r)$
+for $\lambda>0$;
+(A2) \emph{symmetry}, $\Phifun(-r)=\Phifun(r)$, and permutation
+invariance;
+(A3) \emph{nondegeneracy and continuity};
+(A4) \emph{sampling consistency}: for every c\`adl\`ag
+$f:[0,1]\to\R$, $\Phifun(f(1/s),\dots,f(s/s))$ converges as
+$s\to\infty$ to a nondegenerate limit $\Phifun_\infty(f)$
+(c\`adl\`ag, not merely continuous, so that jump processes are
+covered).
+\end{definition}
+
+\begin{definition}[FDFA, two layers]\label{def:fdfa}
+$F_\Phifun(v,s)=\Phifun(r^{(v,s)})$ on the window residuals (inner
+layer), then
+$F_{\Phifun,\mathcal A}(s)=\mathcal A(\{F_\Phifun(v,s)\}_v)$ across
+windows (outer layer), and the exponent from the log-log slope.
+Members are written $\mathrm{FDFA}_{\Phifun,\mathcal A}$. Classical
+DFA is $\mathrm{FDFA}_{\mathrm{RMS},\mathcal A_2}$; MFDFA is the
+slice $\{\mathrm{FDFA}_{\mathrm{RMS},\mathcal A_q}\}_q$.
+\end{definition}
+
+The organizing idea: \textbf{the inner functional decides what
+``fluctuation'' means inside a window; the outer aggregator decides
+which windows dominate.} Implemented inner functionals (all
+normalized to Gaussian $\sigma$-consistency): RMS, $L^p$
+($p=1,\,1/2$), MAD, quantiles $Q_{0.75}$, $Q_{0.90}$, IQR, Huber
+scale, trimmed standard deviation, $L^\infty$, entropy power
+$e^{\hat h}$. Analyzed and excluded: bounded functionals (kernel
+MMD, total variation, KL --- no scaling law is possible),
+scale-invariant functionals, and reducible ones
+($W_p(\cdot,\delta_0)$ is exactly $L^p$; energy distance is
+$L^1$-type). Entropies are admissible only after exponentiation.
+
+\section{What the theory says}
+
+\begin{lemma}[Dilation equivariance]\label{lem:commute}
+For $\Pi_s$ the $L^2[0,s]$-projection onto polynomials of degree
+$\le m$ and $(D_af)(t)=f(at)$:
+$(I-\Pi_s)g=D_{1/s}(I-\Pi_1)D_sg$, and $(I-\Pi_s)$ commutes with
+positive scalars.
+\end{lemma}
+
+\begin{proposition}[Exponent universality]\label{prop:universal}
+Let $X$ be $H$-sssi with c\`adl\`ag paths, $\Phifun$ admissible,
+and let $Z_\Phifun=\Phifun_\infty((I-\Pi_1)X|_{[0,1]})$ have finite
+nonzero median. Then $s^{-H}F_\Phifun(v,s)\to_dZ_\Phifun$, hence
+$\operatorname{med}F_\Phifun(v,s)=C_\Phifun s^H(1+o(1))$, and the
+same for the mean under uniform integrability. The exponent is $H$
+for \emph{every} admissible $\Phifun$.
+\end{proposition}
+
+The proof is three lines given the lemma: residuals of the
+$s$-window are, in distribution, $s^H$ times time-rescaled residuals
+of the unit window; homogeneity extracts $s^H$; sampling consistency
+gives the limit. Consequence: replacing the variance never changes
+the estimated quantity, only the estimator's statistics --- the
+\emph{license} for everything else.
+
+\begin{remark}[Finite-range correction of $L^\infty$]\label{rem:linf}
+The supremum is admissible, but the sampled maximum approaches the
+continuum supremum from below with a slowly varying deficit (in the
+iid caricature, a $\sqrt{2\log s}$ factor; dependence within the
+window slows but does not remove it), inflating finite-range slopes
+--- more at small $H$. Confirmed numerically; leader-type
+normalization \citep{jaffard2004} is the cure.
+\end{remark}
+
+\begin{proposition}[Heavy tails]\label{prop:stable}
+For iid symmetric $\alpha$-stable input, $0<\alpha<2$ (profile
+$=1/\alpha$-self-similar stable walk): (i)
+$s^{-1/\alpha}F_\Phifun(v,s)\to_d\Xi$ with regularly varying tail of
+index $\alpha$; (ii) for the $q$-mean outer layer with $q>\alpha$,
+$\E\Xi^q=\infty$ and the bifractal law $h(q)=1/q$ of
+\citet{nakao2000} applies --- in particular $h(2)=1/2$ for every
+$\alpha<2$: \emph{classical DFA is asymptotically blind to the
+self-similarity index of stable noise}; (iii) a median outer layer
+recovers $1/\alpha$ with any admissible inner functional.
+\end{proposition}
+
+\begin{principle}[Trend absorption]\label{pri:trend}
+An extreme increment enters the profile as a step; after detrending
+it is a perturbation of order $M$ spread over the whole window --- a
+shape distortion, not a point outlier. No translation-insensitive
+inner functional, robust or not, can reject it. Robustness against
+heavy tails is effective only at the outer, cross-window layer.
+\end{principle}
+
+This principle was \emph{not} part of the original plan; it is the
+post-mortem of a falsified prediction (P4 below), and it dictates
+both the design rule (robustify the outer layer) and the diagnostic
+that follows.
+
+\section{The discriminator}
+
+A $q$-mean with large $|q|$ is dominated by extreme windows, and a
+window can be extreme for two indistinguishable reasons: genuinely
+different local scaling (the multifractality one wants) or a
+heavy-tailed event (distributional luck). Quantiles of the window
+ensemble separate the two.
+
+\begin{definition}[Quantile-exponent profile]\label{def:theta}
+$\theta(\tau)$ is the log-log slope of the empirical
+$\tau$-quantile of $\{F_\Phifun(v,s)\}_v$ against $s$, over scales
+with $2N_s\gtrsim50$.
+\end{definition}
+
+If windows are exchangeable with a common scale factor (heavy-tailed
+monofractal), every quantile scales identically: $\theta$ flat, even
+when $\Delta h=h(-4)-h(4)$ is large. If window heterogeneity is
+scale-structured (genuine multifractality), $\theta$ varies with
+$\tau$ --- decreasing for cascades. Verdict rule, with thresholds
+fixed on synthetic data before touching real data:
+$\Delta h>0.15$ and $|\Delta\theta|\le0.08$ $\Rightarrow$
+distributional; $\Delta h>0.15$ and $|\Delta\theta|>0.08$
+$\Rightarrow$ genuine. This answers, from a single run and without
+surrogate ensembles, the question customarily answered by shuffling
+\citep{kantelhardt2002,movahed2006}; it is the fixed-$N$,
+per-record counterpart of the asymptotic dichotomy of
+\citet{kwapien2023}.
+
+\section{The prediction ledger}
+
+Every experiment tested a prediction formulated in advance. The
+record, in full (details and figures in the repository):
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{clll}
+\toprule
+ & prediction & benchmark & outcome\\
+\midrule
+P1 & all admissible $\Phifun$ give slope $H$ & fGn,
+$H\in\{0.3,0.5,0.7\}$ & \textbf{confirmed} (spread $<0.011$)\\
+P2 & classical blind, robust recovers $1/\alpha$ & stable,
+$\alpha\in\{1.2,1.5,1.8\}$ & \textbf{confirmed, strong form}\\
+P3 & genuine width preserved by robust $\Phifun$ & binomial cascade
+& \textbf{confirmed} ($0.23$--$0.25$ vs $0.215$)\\
+P4 & robust inner $\Phifun$ suppresses spurious width & stable
+$h(q)$ & \textbf{falsified} $\to$ Principle~\ref{pri:trend}\\
+P5 & $(\Delta h,\Delta\theta)$ separates the three cases & fGn /
+cascade / stable & \textbf{confirmed}\\
+P6 & discriminator correct with Gaussian tails & MRW & \textbf{confirmed}
+($\Delta\theta=-0.12$)\\
+P7 & universality beyond fBm construction & ARFIMA$(0,d,0)$ &
+\textbf{confirmed}\\
+P8 & $\theta$-verdict $=$ shuffle verdict & five signal classes &
+\textbf{confirmed} ($5/5$ at $n=2^{14}$)\\
+P9 & RMSE $\propto n^{-1/2}$; order-$m$ bias floor & fGn, stable
+grid & \textbf{confirmed} ($50$ real./point)\\
+\bottomrule
+\end{tabular}
+\caption{The prediction--falsification record of the project.
+P4 is reported with the same prominence as the confirmations: its
+failure mechanism (trend absorption) reorganized the framework and
+produced the discriminator.}
+\label{tab:ledger}
+\end{table}
+
+Two caveats found along the way and kept: the discriminator needs
+$n\gtrsim10^4$ under heavy tails (a stable record was misclassified
+at $n=2^{12}$), and zero-inflated series (e.g.\ sunspot numbers at
+solar minima) blow up negative-$q$ moments unless the lower scale
+cut exceeds the zero-run scale --- with the default cut one obtains
+a spurious $\Delta h\approx10$.
+
+\section{Reality check (OMNI2)}
+
+Applied to four heliophysical series with
+$\mathrm{FDFA}^{(2)}_{\mathrm{Huber},\mathrm{med}}$ for exponents
+and the discriminator for origin: sunspot $R$ reproduces the
+surrogate-based conclusion of \citet{movahed2006} (width $0.62\to
+0.01$ under shuffling; $\Delta\theta=-0.16$) from a single run;
+$D_{st}$ and IMF $B$ come out genuinely multifractal, with visible
+classical/robust exponent gaps flagging tail influence; and the IMF
+increments $\delta B$ are a \emph{mixed} case --- shuffling retains
+$\Delta h_{\mathrm{shuf}}=0.15$ of $0.38$, so roughly $40\%$ of the
+width is distributional, refining the picture of
+\citet{macek2011}.
+
+\section{Open problems}
+
+(1) Median outer layer sacrifices the Legendre formalism: robust
+exponents or spectra, not both from one pipeline. (2)
+$\Delta\theta$ needs a calibrated significance scale and a formal
+three-way genuine/mixed/distributional verdict. (3) Rigor gaps:
+discretization in Proposition~\ref{prop:universal}; tail constants
+in Proposition~\ref{prop:stable}(i); median concentration under
+long-range dependent window ensembles; quantitative trend
+absorption; multiplicative-invariance version for cascades. (4)
+Dictionary to the $p$-leader formalism \citep{leonarduzzi2016}.
+
+\section*{Code}
+
+Everything above is implemented in the accompanying repository:
+\texttt{fdfa.py} (the two-layer estimator with pluggable
+functionals), \texttt{generators.py} (benchmarks with known ground
+truth), \texttt{run\_validation.py} (the nine-experiment ledger of
+Table~\ref{tab:ledger}), \texttt{run\_application.py} (the OMNI2
+analysis). All figures and tables regenerate from two seeded
+commands in under one minute.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}
