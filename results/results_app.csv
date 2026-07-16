@@ -1,0 +1,25 @@
+experiment,series,quantity,value,std,n,n_realizations
+application,sunspot R (daily),h2,0.7949488387636863,0.0,18273,1
+application,sunspot R (daily),H_classic,0.7949488387636862,0.0,18273,1
+application,sunspot R (daily),H_robust,0.8066802462464494,0.0,18273,1
+application,sunspot R (daily),dh,0.6168910274576951,0.0,18273,1
+application,sunspot R (daily),dh_shuffled,0.007065129591932162,0.0,18273,1
+application,sunspot R (daily),dtheta,-0.16427739087509674,0.0,18273,1
+application,D_st (hourly),h2,1.034808370892891,0.0,438552,1
+application,D_st (hourly),H_classic,1.034808370892891,0.0,438552,1
+application,D_st (hourly),H_robust,1.1218890022763914,0.0,438552,1
+application,D_st (hourly),dh,0.28082070999638686,0.0,438552,1
+application,D_st (hourly),dh_shuffled,0.07705417232674781,0.0,438552,1
+application,D_st (hourly),dtheta,-0.08553267330672987,0.0,438552,1
+application,"B (hourly, 1996+)",h2,0.8600796462415419,0.0,262610,1
+application,"B (hourly, 1996+)",H_classic,0.8600796462415419,0.0,262610,1
+application,"B (hourly, 1996+)",H_robust,0.9831806928613286,0.0,262610,1
+application,"B (hourly, 1996+)",dh,0.4462700582081178,0.0,262610,1
+application,"B (hourly, 1996+)",dh_shuffled,0.07490430625332337,0.0,262610,1
+application,"B (hourly, 1996+)",dtheta,-0.23748030459398306,0.0,262610,1
+application,delta B (hourly),h2,0.22838280816884904,0.0,262609,1
+application,delta B (hourly),H_classic,0.22838280816884912,0.0,262609,1
+application,delta B (hourly),H_robust,0.29919885335329616,0.0,262609,1
+application,delta B (hourly),dh,0.3834469181500333,0.0,262609,1
+application,delta B (hourly),dh_shuffled,0.1534841100788064,0.0,262609,1
+application,delta B (hourly),dtheta,-0.23516494827610268,0.0,262609,1

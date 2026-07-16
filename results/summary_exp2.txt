@@ -1,0 +1,14 @@
+FDFA validation | n=16384, realizations=20, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 2: iid alpha-stable, prediction P2 (true exp = 1/alpha) ===
+     Phi | a=1.2 (1/a=0.833) | a=1.5 (1/a=0.667) | a=1.8 (1/a=0.556)
+------------------------------------------------------------------------------
+  rms-cl | 0.505+-0.020 | 0.501+-0.018 | 0.494+-0.017
+     rms | 0.860+-0.066 | 0.673+-0.033 | 0.550+-0.030
+      l1 | 0.859+-0.066 | 0.672+-0.033 | 0.550+-0.031
+     mad | 0.864+-0.067 | 0.671+-0.032 | 0.553+-0.032
+   q0.75 | 0.860+-0.064 | 0.673+-0.032 | 0.554+-0.031
+   huber | 0.860+-0.066 | 0.671+-0.034 | 0.551+-0.031
+  tstd10 | 0.864+-0.065 | 0.677+-0.033 | 0.556+-0.031
+
+Done in 5.0 s. Figures and results_exp2.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

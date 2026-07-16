@@ -1,0 +1,12 @@
+FDFA validation | n=16384, realizations=20, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 8: shuffle surrogates vs discriminator (P8) ===
+            signal |     Dh | Dh_shuf |  Dtheta |  shuffle verdict |  theta verdict | agree?
+--------------------------------------------------------------------------------------------
+         fGn H=0.7 |  0.018 |   0.022 |  -0.013 |             mono |           mono | YES
+    cascade m0=0.6 |  0.235 |   0.076 |  -0.118 |          genuine |        genuine | YES
+      stable a=1.5 |  0.412 |   0.415 |  -0.010 |         spurious |       spurious | YES
+     MRW lam2=0.05 |  0.212 |   0.061 |  -0.109 |          genuine |        genuine | YES
+   tempered stable |  0.081 |   0.079 |  -0.102 |             mono |           mono | YES
+
+Done in 5.0 s. Figures and results_exp8.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

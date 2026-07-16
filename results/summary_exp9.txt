@@ -1,0 +1,6 @@
+FDFA validation | n=16384, realizations=50, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 9: RMSE vs n and detrending order m (P9) ===
+RMSE curves written to fig10_finitesize.png (see results.csv, experiment='finitesize')
+
+Done in 38.8 s. Figures and results_exp9.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

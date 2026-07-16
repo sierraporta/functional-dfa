@@ -1,0 +1,12 @@
+FDFA validation | n=16384, realizations=20, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 6: MRW (lognormal), prediction P6 ===
+     Phi | width Dh = h(-4)-h(4)   (theory: 0.200)
+--------------------------------------------------
+     rms | 0.226
+     mad | 0.245
+   q0.75 | 0.234
+   huber | 0.231
+discriminator on MRW: Dtheta = -0.121 (genuine expected: |Dtheta| >> 0)
+
+Done in 1.2 s. Figures and results_exp6.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

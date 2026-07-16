@@ -1,0 +1,11 @@
+FDFA validation | n=16384, realizations=20, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 3: binomial cascade, prediction P3 (trade-off) ===
+     Phi | width Dh = h(-4) - h(4)   (theory: 0.215)
+--------------------------------------------------
+     rms | 0.240
+     mad | 0.251
+   q0.75 | 0.243
+   huber | 0.242
+
+Done in 2.4 s. Figures and results_exp3.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

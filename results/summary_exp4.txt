@@ -1,0 +1,11 @@
+FDFA validation | n=16384, realizations=20, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 4: iid alpha-stable h(q), prediction P4 (robust Phi suppresses spurious width) ===
+     Phi | width Dh = h(-4) - h(4)   (genuine MF width would be 0)
+--------------------------------------------------
+     rms | 0.391
+     mad | 0.418
+   q0.75 | 0.401
+   huber | 0.399
+
+Done in 1.1 s. Figures and results_exp4.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

@@ -1,0 +1,8 @@
+FDFA application to OMNI2 | order m=2 | style: science+nature (mathtext fallback)
+
+                series |  h(2) | H_rob |     Dh | Dh_shuf |  Dtheta |  shuffle |    theta
+------------------------------------------------------------------------------------------------
+     sunspot R (daily) | 0.795 | 0.807 |  0.617 |   0.007 |  -0.164 |  genuine |  genuine   (n=18273)
+         D_st (hourly) | 1.035 | 1.122 |  0.281 |   0.077 |  -0.086 |  genuine |  genuine   (n=438552)
+     B (hourly, 1996+) | 0.860 | 0.983 |  0.446 |   0.075 |  -0.237 |  genuine |  genuine   (n=262610, miss=0.2%)
+      delta B (hourly) | 0.228 | 0.299 |  0.383 |   0.153 |  -0.235 |  genuine |  genuine   (n=262609)

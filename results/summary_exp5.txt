@@ -1,0 +1,10 @@
+FDFA validation | n=16384, realizations=20, order=1, seed=42 | style: science+nature (mathtext fallback)
+
+=== Experiment 5: (M3) discriminator, prediction P5 ===
+                          signal | Dtheta = th(.9)-th(.1) | Dh = h(-4)-h(4) | verdict
+--------------------------------------------------------------------------------------------
+              fGn $H=0.7$ (mono) |                   0.001 |           0.022 | monofractal
+     cascade $m_0=0.6$ (genuine) |                  -0.121 |           0.231 | genuine MF
+  stable $\alpha=1.5$ (spurious) |                  -0.057 |           0.371 | spurious MF
+
+Done in 2.3 s. Figures and results_exp5.csv written to /sessions/brave-affectionate-newton/mnt/MFDFA Mio/results/

@@ -1,0 +1,7 @@
+experiment,phi,param,mean,std,n,n_realizations
+discriminator,fGn $H=0.7$ (mono),dtheta,0.0014394377154779425,0.024281965574345366,16384,10
+discriminator,fGn $H=0.7$ (mono),dh,0.022131568635320297,0.016696275447735102,16384,10
+discriminator,cascade $m_0=0.6$ (genuine),dtheta,-0.12059360756683535,0.01596411406080161,16384,10
+discriminator,cascade $m_0=0.6$ (genuine),dh,0.23113676302564373,0.018016329286272986,16384,10
+discriminator,stable $\alpha=1.5$ (spurious),dtheta,-0.05679206055122743,0.06358097007442041,16384,10
+discriminator,stable $\alpha=1.5$ (spurious),dh,0.3714948768049194,0.054343952143217696,16384,10
